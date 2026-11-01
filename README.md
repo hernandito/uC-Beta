@@ -1,23 +1,47 @@
-# unCommander (Beta)
+# unCommander
 
-### The two-pane file manager unRAID always deserved: fast, safe, and built for real libraries.
+### The two-pane file manager unRAID always deserved: fast, safe, and built for real media libraries.
 
-unCommander puts a Midnight Commander–style, two-pane file manager right inside the unRAID webGUI. It works just as well with a mouse, a keyboard or an iPad. Folders open instantly, even with tens of thousands of files. Every change can be undone, and nothing is ever deleted without a way back.
+unCommander (uC for short) is a plugin that adds a full **Midnight Commander–style, two-pane file manager** to the unRAID webGUI. There's nothing to SSH into and no Docker container to set up. Open it from the top menu and start working with your shares, disks and pools.
 
-This is the **beta channel**. It has everything that's coming to the stable release, and you get it first.
+It works with a **mouse**, a **keyboard** and an **iPad**. Folders with tens of thousands of files open **instantly**. **Every change can be undone**, and nothing is ever deleted without a way back.
 
-<!-- Screenshots: put them in a screenshots/ folder and remove the comment marks below.
-![unCommander](screenshots/main.png)
--->
+[![unCommander inside unRAID](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/main-view.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/main-view.png)
+
+> **This is the beta channel.** It gets every new feature first. The stable version is in Community Applications.
 
 ---
 
-## ⚠️ Before you install
+## Contents
 
-- **The beta isn't in Community Applications.** You install it from this repo's link (see below).
-- **It replaces the stable unCommander** if you have it, because it's the same plugin with a newer version. Your settings, shortcuts, trash and History are kept.
-- **Going back to stable:** remove the beta in **Plugins**, then install unCommander from Community Applications again. Nothing you've saved is lost.
-- Found a bug or have an idea? Post it in the [support thread](https://forums.unraid.net/topic/200949-plugin-uncommander-%E2%AD%90-a-powerful-two-pane-file-manager/). Betas get better fast because of your reports.
+- [Why unCommander](#why-uncommander)
+- [Install](#install)
+- [The basics](#the-basics)
+- [Copying, moving and jobs](#copying-moving-and-jobs)
+- [Undo, History and the trash](#undo-history-and-the-trash)
+- [Viewing and editing](#viewing-and-editing)
+- [Pictures, video and music](#pictures-video-and-music)
+- [Built-in terminal](#built-in-terminal)
+- [Tools](#tools)
+- [Make it yours](#make-it-yours)
+- [Keyboard](#keyboard)
+- [Settings](#settings)
+- [Safety](#safety)
+- [FAQ](#faq)
+- [Building from source](#building-from-source)
+
+---
+
+## Why unCommander
+
+- **Two panes, side by side.** Source on one side, destination on the other, just like Midnight Commander and Total Commander. Copying and moving is one key or one drag.
+- **Instant on huge folders.** uC reads the names first and only fetches sizes and dates for the rows you can see.
+- **Undo for everything.** Renames, moves, copies, deletes, new folders and permission changes are all recorded in History and can be undone, even days later.
+- **unRAID-aware.** It knows shares from disks and pools. It refuses to copy something onto itself through `/mnt/user`, shows which disk each file really lives on, finds the hidden duplicate copies that shares merge away, and mounts Unassigned Devices.
+- **Made for media libraries.** Gallery view, a picture editor, a video player that plays almost anything, a music library with a tag editor and playlists, and tools that find broken movie and TV folders and connect to Radarr, Sonarr and Lidarr.
+- **Gentle on your server.** Copies run as low-priority background jobs, and very little is ever written to the flash drive.
+
+---
 
 ## Install
 
@@ -31,116 +55,319 @@ This is the **beta channel**. It has everything that's coming to the stable rele
 
 New betas show up in **Plugins → Check for Updates** like any other plugin.
 
-**Requirements:** unRAID 6.12 or later. Optional parts (7-Zip, HEIC support, ffmpeg for video) download by themselves from their official sources and are checked against pinned checksums.
+**Requirements:** unRAID 6.12 or later. A few optional parts download by themselves, from their official sources, checked against pinned checksums:
+- 7-Zip, for .rar and .7z, at install;
+- HEIC support, for iPhone photos, at install;
+- ffmpeg, the first time a video needs it.
+
+**Already using the stable version?** The beta installs over it, because it's the same plugin with a newer version. Your settings, shortcuts, colours, trash and History are all kept. To go back, remove the plugin in **Plugins** and install unCommander from Community Applications again.
+
+**Removing it:** **Plugins → unCommander → Remove**. Your settings and any `.uncommander-trash` folders are left in place.
 
 ---
 
-## ✨ What's new since 2026.10.18h
+## The basics
 
-This beta is the biggest update unCommander has had. Here are the highlights.
+[![Two panes, the right-click menu, Gallery preview and the terminal](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/main-view2.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/main-view2.png)
 
-### ↶ Undo anything, and see everything
-- **History:** every rename, move, copy, delete, new folder and permission change is recorded. You can undo any step, or just part of one, even days later.
-- **Honest undo:** before anything is replaced, uC tells you exactly how far it can be undone.
-- **One retention setting:** "Keep deleted items and History for N days" (7 by default), plus *Empty the trash now* and *Forget all steps*.
+| Do this | How |
+|---|---|
+| Open a folder or file | Click its name, or press Enter. On a tablet, tap once to pick the row and tap again to open it. |
+| Go up | `..`, Backspace, or tap any part of the path bar. Deeper folders you came from stay greyed in the path, so you can tap straight back into them. |
+| Back / Forward | The ‹ › buttons in each pane's header. Each pane has its own history. |
+| Switch pane | Click it, or press Tab. The active pane is the source: **Copy →** or **← Copy**. |
+| Tick items | The checkboxes, Space or Insert, Shift-click for a range, **All / None / Invert**, or a pattern like `*.srt` with **Add / Remove** |
+| Find a name | Just start typing. uC jumps to the first match, or filters the list if you switch the Jump box to filter mode. |
+| More actions | Right-click anything, or press and hold on a tablet. The menu has everything that applies to what you clicked. |
 
-### 🖱️ Works the way your hands already do
-- **Right-click menu** on everything: rows, empty space and the path bar. On the iPad, press and hold.
-- **Copy, Cut and Paste** with Ctrl+C / X / V, and a Paste window that shows what will happen first.
-- **Drag and drop** between panes or onto a folder. **Drop files from your computer** to upload them. **Download** any file, or a whole selection as one zip.
-- **The cart:** collect files from several folders, then copy or move them all in one go. **Tag for delete** builds a delete list the same way.
+**More ways around:**
+- **Go to…** opens a panel of every share, disk, pool, Unassigned Devices drive and the flash drive.
+- **Shortcuts** are buttons under the top bar for your favourite folders.
 - **Folder tree:** an optional caret opens folders right inside the list.
+- **One pane** gives the other the full width, for long names.
+- **Tabs:** each tab keeps its own panes and name. Tabs can live inside unRAID, in their own browser tab, or in an application window.
+- **Whole OS:** a switch in the top bar to go beyond `/mnt` and `/boot` when you really need to.
 
-### 🆕 Make it yours (new in this beta)
-- **F-keys your way:** pick the *Windows / Midnight Commander* layout (F2 = Rename, F3 = View, F4 = Edit), keep unCommander's own, or set every key yourself.
-- **Filter as you type:** a click on the icon in the Jump box switches between *jump to a name* and *show only matching names*.
-- **Right-click to tick:** right-click ticks a row, right-drag ticks a run, and holding the button opens the menu (Total Commander style).
-- **Hide the button bar** for more room. The F-keys keep working.
-- **See what just changed:** files and folders changed in the last 5, 15 or 60 minutes (or a day) get their names in green.
-- **Colour themes:** unCommander blue, unRAID orange, Graphite, Mono, Teal, Violet, Forest and the classic Midnight Commander look. Edit any colour for light and dark, and save your own themes.
-- **A steadier frame:** the active pane no longer gets narrower when you click into it.
+**What each row tells you:**
+- **Columns:** Size, Disk, Date and Mode can each be shown or hidden.
+- **Disk** shows which disk(s) or pool an item really lives on. Tap it to open one disk's copy in the other pane.
+- **Mode:** an owner other than `nobody:users` shows in amber, so permission problems stand out.
 
-### 🖼️ Pictures, video and music, right in the panes
-- **Gallery view** with a preview pane: picture thumbnails, plus video and audio you can scrub through.
+**On the iPad:** open uC in its own tab and use *Share → Add to Home Screen* to make it an app. Press and hold gives you the menu by your finger, and nothing selects page text by accident.
+
+---
+
+## Copying, moving and jobs
+
+[![A copy running as a background job](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/copy-progress.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/copy-progress.png)
+
+- **Copy (F5) and Move (F6)** go to the other pane. You can also **drag and drop** between panes or onto a folder, or use **Ctrl+C / Ctrl+X** then **Ctrl+V**, which shows a Paste window first.
+- **The cart:** collect files from several folders, then copy or move them all at once. **Tag for delete** builds a delete list the same way.
+- **Upload and download:** drop files from your computer into a pane to upload them, chunked and safe for big files. Download any file, or a whole selection as one zip.
+- **Jobs run in the background:**
+  - copies use `rsync` at low priority, and a move on the same disk is instant;
+  - close the window, the tab, or even the browser, and the job carries on;
+  - when it's done you get a row at the top of uC and an unRAID notification;
+  - jobs queue one after another, so nothing fights for the disks.
+- **Existing files are skipped by default.** You choose per job: skip, replace, or replace only if older. Anything replaced is set aside in the trash first, so it can come back.
+
+### Compare
+
+[![Compare two folders](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/compare.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/compare.png)
+
+**Compare** tags every item in both panes as *only here*, *newer*, *older*, *differs* or *the same*. It ticks what's missing or newer on the active side, so F5 brings the other side up to date. **Detailed compare** goes all the way down through subfolders: one row per difference, an arrow you tap to choose which way it copies, and filters for bulk choices. Compare never deletes anything.
+
+### Batch rename
+
+[![Batch rename with a live preview](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/batch-rename.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/batch-rename.png)
+
+Rename the ticked items four ways:
+- **Replace** text, plain or as a regular expression;
+- **Add** text;
+- **Number** them, with patterns like `[name]`, `[n]`, `[date]` and `[folder]`;
+- **Change case**.
+
+A live before → after list shows every new name, marks clashes in red, and lets you untick single rows. The whole rename can be undone.
+
+### Also on the menu
+- **Compress / Extract:** .zip, .tar.gz, .rar (incl. RAR5), .7z, .tar.bz2/xz/zst and more, with real progress. F3 on an archive lists what's inside.
+- **Folder sizes:** adds up the ticked folders in the background.
+- **Permissions (F10):** owner, group and mode, or unRAID's default in one click.
+- **Fix access:** one click so shares and Docker apps can open a file (`nobody:users`).
+- **Properties, New file, Copy paths.**
+
+---
+
+## Undo, History and the trash
+
+- **Undo** the last change with **Ctrl+Z**, the **Undo** link in each message, or the Undo button.
+- **History** lists every change, newest first. Undo any step, or just part of one.
+- **Honest about limits:** before anything is replaced, uC tells you exactly how far it can be undone.
+- **The trash:**
+  - deleting moves items into `.uncommander-trash` at the top of their share or disk, so nothing is copied across disks;
+  - open a trash folder to see what each entry holds, when it was deleted and where from;
+  - **Restore** puts entries back where they came from.
+- **One retention setting:** "Keep deleted items and History for N days" (7 by default). Old items are cleared daily. There's also *Empty the trash now* for when you need the space.
+- **Delete for good:** a box in the Delete window skips the trash.
+- **Practice mode** (on for new installs) locks everything that changes or removes files, so you can learn uC without risk. Switch it off in Settings when you're ready.
+
+---
+
+## Viewing and editing
+
+[![The picture viewer and the text editor](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/viewer.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/viewer.png)
+
+**View and Edit:**
+- **View (F2)** shows text with line numbers, pictures fitted to the window (tap for actual size, swipe or ←/→ through the folder), PDFs, and what's inside archives.
+- **Edit (F3)** edits text files up to 5 MB. Saving keeps the owner and permissions, and uC warns you if the file changed on disk while you were editing.
+
+**Colour highlighting** covers unRAID `.cfg` files, shell scripts (including `/boot/config/go`), XML, `.nfo` and `.plg`, JSON, YAML and Docker compose, logs (errors in red, warnings in amber), PHP, JavaScript, CSS, Python, Markdown and more.
+
+**Word wrap** is on by default; Alt+Z switches it.
+
+**Find (F9)** searches by name and, optionally, by content. Results open in a pane, in the viewer at the matching line, or in the editor.
+
+---
+
+## Pictures, video and music
+
+**Pictures:**
+- **Gallery view:** pictures as tiles, with a preview pane that also plays video and audio and peeks into text files.
 - **Picture editor:** rotate, flip, crop (with shapes), straighten, resize, and save as JPG, PNG, WebP or GIF. JPG turns are lossless, and you can save as new or replace (undoable).
 - **HEIC photos** from iPhones open and convert in any browser.
-- **Play almost any video** in the browser, including on the iPad. Sound is converted on the fly, and there's subtitle support (inside the file or next to it, including PGS/DVD), track picking, sound sync, and picture conversion on the CPU, NVIDIA or Intel/AMD.
-- **Music library view:** artists and albums with covers, an album strip with Play and Tags, and disc folders (CD1/CD2) handled for you.
-- **Tag editor** with a MusicBrainz lookup. You review everything before it's written, and every write is checked. It also makes folder covers.
-- **Player in the bottom bar** with a queue, shuffle, repeat, media keys, and resume where you left off.
-- **Playlist builder:** add songs, albums or whole artists, reorder, then **Send** to Plex, Kodi (including smart playlists), Jellyfin/Emby, Navidrome, Airsonic or a USB drive. Sends are remembered and updated in one go.
-- **Music check tool:** finds missing covers, mixed formats, missing tracks and empty albums. It can make covers, merge discs, rename to the tags and keep one format. It can also **ask Lidarr** to fetch what's missing.
 
-### 💻 A real terminal, built in
-- unRAID's own web terminal sits under the panes, as wide as both. **Hide** keeps it running.
-- Clickable folder names, a **paste w/ edit** box, **clear** that keeps your scrollback, a session that survives a page reload, and an automatic reconnect when you come back to the app.
+**Video player:** plays almost any video right in the browser, including on the iPad.
+- Sound and picture are converted on the fly when needed, on the CPU, NVIDIA or Intel/AMD.
+- Subtitles inside the file or next to it, including PGS/DVD picture subtitles.
+- Pick the sound track and adjust sound sync.
 
-### 🧰 Tools that clean up for real
-- **Duplicates:** two kinds. *Duplicate files on different disks* finds the copies your shares hide. *Identical files anywhere* is a byte-for-byte content match. It can tick for you ("Tick the hidden copies", or "Keep one, tick the rest" with a rule you choose), shows which copy is kept in green, and deletes now-empty folders along with them.
-- **What's using space:** a map and a list, biggest first.
-- **Empty folders**, **Movie folders without a video** (with Radarr) and **TV shows with missing episodes** (with Sonarr).
-- **Clean up:** see what unCommander itself keeps, and clear it.
-- **Fix access:** one click so shares and Docker apps can open a file (nobody:users).
-- **User Scripts** button: run your User Scripts from the top bar.
+**Music:**
+- **Music library:** artists and albums with covers, an album strip with Play and Tags, and disc folders (CD1/CD2) handled for you.
+- **Tag editor** with a **MusicBrainz** lookup. You review every change before it's written, and every write is checked. It makes folder covers too.
+- **Player** in the bottom bar with a queue, shuffle, repeat, media keys, and resume where you left off.
+- **Playlists:** add songs, albums or whole artists, reorder, and save. **Send** a playlist to **Plex, Kodi** (smart playlists too), **Jellyfin/Emby, Navidrome, Airsonic** or a **USB drive**. Sends are remembered, so they can all be updated in one go later.
+
+---
+
+## Built-in terminal
+
+unRAID's own web terminal sits under the two panes, as wide as both. It comes with:
+- **clickable folder names** to `cd` around;
+- a **paste w/ edit** box for long commands;
+- **clear** that keeps your scrollback;
+- a session that **survives a page reload**;
+- an automatic **reconnect** when you come back from another app.
+
+**Hide** keeps it running; **Exit** logs off.
+
+---
+
+## Tools
+
+All the tools are in **Settings → Tools**. They run in the background, remember their last results, and can be tucked away while you work.
+
+### Duplicates
+
+[![Duplicates](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/duplicates.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/duplicates.png)
+
+There are two kinds of check:
+- **Duplicate files on different disks** finds the copies your shares hide. When the same file is on two disks, `/mnt/user` only shows one. The other just takes space.
+- **Identical files anywhere** compares content byte for byte, whatever the names.
+
+uC can tick for you:
+- **Tick the hidden copies**;
+- **Keep one, tick the rest**, keeping the copy in the fullest folder, the oldest, the newest, or the one in a folder you pick.
+
+The copy that stays is shown in green. Folders left empty go too, in the same undoable step.
+
+### What's using space
+
+[![What's using space](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/usage.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/usage.png)
+
+A map and a list of any folder, biggest first, so you can see at a glance where the space went.
+
+### Empty folders on disks
+
+[![Empty folders on disks](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/tools-empty-folders.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/tools-empty-folders.png)
+
+This finds empty folders on each disk and pool, which are often leftovers that `/mnt/user` merges away.
+- Removal is safe: it uses `rmdir`, so the system refuses anything that isn't empty.
+- Undo brings the folders back with the same owner, permissions and dates.
+
+### Movie folders without a video
+
+[![Movie folders without a video](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/tools-movies.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/tools-movies.png)
+
+Lists the movie folders that have posters, `.nfo` files or samples but no video. It shows details from the `.nfo` (poster, plot, IMDb/TMDb links), exports to CSV, and sends movies back to **Radarr** to download into their existing folders. Movies that come back show up as *✓ Arrived through Radarr*.
+
+### TV shows with missing episodes
+
+[![TV shows with missing episodes](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/tools-tv.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/tools-tv.png)
+
+Checks your shows against **TVmaze**: which episodes are missing, whether the show has ended or is continuing, and when the next episode airs. It can ask **Sonarr** to get what's missing.
+
+### Music check
+
+Finds:
+- albums with missing covers;
+- mixed formats;
+- missing tracks;
+- folders with no songs.
+
+It can make covers, merge discs, rename files to their tags, keep one format, and **ask Lidarr** to fetch what's missing. **Check this playlist** finds songs a playlist can't play.
+
+### Also in Tools
+- **Clean up:** see what unCommander itself keeps on your server, and clear it.
+- **User Scripts:** run your User Scripts from the top bar.
 - **Unassigned Devices:** mount and unmount drives and network shares right from the panes.
 
-### 🗂️ Tabs, windows and the iPad
-- **Tabs:** each keeps its own panes and name. They can live inside unRAID, in their own browser tab, or in an application window.
-- **unCommander in its own tab**, without the unRAID header. On the iPad, *Share → Add to Home Screen* turns it into an app.
-- Touch improvements throughout: a floating menu by your finger, bigger tap targets, and no accidental text selection.
+---
 
-### 🛡️ Safer than ever
-- **Practice mode** is on for new installs. You can explore without being able to break anything, and switch it off when you're ready.
-- **Gentle on your flash drive:** lists, History and ffmpeg live in unCommander's folder on the array. Little is written to the flash drive.
+## Make it yours
+
+[![Colour themes, light and dark](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/themes.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/themes.png)
+
+**Colours:**
+- **Colour themes:** unCommander blue, unRAID orange, Graphite, Mono, Teal, Violet and Forest, plus the classic **Midnight Commander** look.
+- Each theme has light and dark colours and follows unRAID's own theme (Settings → Display Settings). Edit any colour, or save your own themes.
+- **Your own CSS**, with live preview, ready-made examples, a colour picker and a reference of every variable.
+
+**Text size and sounds:** text size is adjustable per device, and soft click sounds are optional.
+
+**Keys and mouse:**
+- **F-key layouts:** unCommander's own, *Windows / Midnight Commander* (F2 = Rename, F3 = View, F4 = Edit), or set every key yourself.
+- **Typing a name** can jump to it, or filter the list down to the matches. A click on the icon in the Jump box switches between the two.
+- **Right-click to tick:** right-click ticks a row, right-drag ticks a run, and holding the button opens the menu (Total Commander style).
+
+**Layout:**
+- **Hide the button bar** for more room; the F-keys keep working.
+- **Mark what changed lately:** files and folders changed in the last 5, 15 or 60 minutes (or a day) get their names in green.
+- **Auto-refresh** shows changes made by other apps as they happen.
+
+[![Settings](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/settings.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/settings.png)
+
+---
+
+## Keyboard
+
+| Key | unCommander layout | Windows / MC layout |
+|---|---|---|
+| F2 | View | Rename |
+| F3 | Edit | View |
+| F4 | Rename | Edit |
+| F5 / F6 | Copy / Move to the other pane | same |
+| F7 | New folder | same |
+| F8 or Delete | Delete | same |
+| F9 | Find | same |
+| F10 | Owner and permissions | same |
+
+| Other keys | |
+|---|---|
+| ↑ ↓ PgUp PgDn Home End | Move the cursor |
+| Enter / Backspace | Open / go up |
+| Tab | Switch pane |
+| Space, Insert | Tick (Insert also moves down, like MC) |
+| Ctrl+A | Tick all |
+| Ctrl+C / X / V | Copy, Cut, Paste |
+| Ctrl+Z | Undo |
+| Menu key, Shift+F10 | The right-click menu |
+| Esc | Clear the filter, close a window |
+
+Settings → Keyboard lists every key, and the list follows your layout.
+
+---
+
+## Settings
+
+- **General:**
+  - the menu name and whether uC appears in the top menu;
+  - opening uC in its own tab, and the tab row;
+  - the button bar and *mark what changed lately*;
+  - the folder tree, the video and music player, auto-refresh, and touch behaviour.
+- **Shortcuts:** your favourite folders.
+- **Look & sound:** colour themes, text size, your own CSS, highlighting and sounds.
+- **Safety & trash:** Practice mode, the trash, how long to keep deleted items and History, and where History is kept.
+- **Tools:** all the tools, and the **Radarr, Sonarr and Lidarr** connections. API keys stay on the server and are never sent to the browser.
+- **Keyboard:** the F-key layout, typing jumps or filters, right-click menu or ticks, and the full key list.
+
+Where settings are kept:
+- **Per device**, in that browser: the ones that suit one device, such as the button bar, F-keys, typing, right-click and text size.
+- **On the server**, the same on every device: everything else.
+
+---
+
+## Safety
+
+- **Only `/mnt` and `/boot`** are reachable unless you switch on the Whole OS view yourself.
+- **No accidental self-destruction:** uC refuses to copy or move something onto itself through another view (for example `/mnt/cache/Media/x` onto `/mnt/user/Media`), and won't put a folder inside itself.
+- **Existing files are skipped** unless you choose otherwise, and anything replaced goes to the trash first.
+- **Practice mode** locks deleting, moving, renaming and permission changes, and the server enforces it too.
+- **Little written to the flash drive:** lists, History and ffmpeg live in unCommander's folder on the array. The flash drive holds only your settings and the cached downloads.
 - **Array stopped?** uC says so clearly and keeps working where it safely can.
 
 ---
 
-## Quick tour
+## FAQ
 
-| Do this | How |
-|---|---|
-| Open a folder | Click its name or press Enter. On a tablet, tap once to pick and again to open. |
-| Go up | `..`, Backspace, or tap any part of the path bar |
-| Switch pane | Click it, or press Tab. The active pane sets the direction (Copy → or ← Copy). |
-| Tick | The checkbox, Space/Insert, Shift-click for a range, All / None / Invert, a pattern like `*.bak`, or right-click (if switched on) |
-| Find a name | Just start typing. It jumps to the name, or filters the list in filter mode. |
-| Menu | Right-click, or press and hold on a tablet. The Menu key and Shift+F10 work too. |
-| Copy / Move | F5 / F6, drag and drop, or Ctrl+C / Ctrl+X then Ctrl+V |
-| Rename | F4 (or F2 with the Windows / MC layout) |
-| View / Edit | F2 / F3 (or F3 / F4 with the Windows / MC layout) |
-| New folder · Delete · Find · Permissions | F7 · F8 or Del · F9 · F10 |
-| Undo | Ctrl+Z, the Undo link in each message, or History for any earlier step |
+**Does it replace unRAID's built-in file manager (Dynamix File Manager)?**
+No. Both work side by side, and nothing of Dynamix File Manager is touched.
 
-Every key is listed in **Settings → Keyboard**, and the list follows your F-key layout.
+**Does it work on an iPad or phone?**
+Yes. Tap once to pick and twice to open, press and hold for the menu, and add it to the Home Screen as an app. Phones work too, though a tablet or computer gives the two panes room to breathe.
 
-### Good to know
-- **Instant listings:** uC reads names first and only fetches sizes and dates for the rows on screen.
-- **Background jobs:** copies and moves run as jobs, even if you close the tab. You get a row at the top of uC when one finishes, plus an unRAID notification.
-- **Trash:** deleting moves items into `.uncommander-trash` at the top of the share or disk. Open it to Restore anything to where it came from. Old items are cleared daily.
-- **Compare:** tags what's missing, newer or older between the two panes. *Detailed compare* goes all the way down through subfolders.
-- **Compress / Extract:** .zip, .tar.gz, .rar (incl. RAR5), .7z and more, with real progress.
-- **Batch rename:** replace, add, number or change case, with a live before → after preview.
-- **Folder sizes, Disk column** (which disk each item really lives on), and **Back / Forward** per pane.
-- **Colour highlighting** in View and Edit for unRAID configs, scripts, XML/.nfo, JSON, YAML, logs, PHP, JS and more.
+**Will it spin up my disks?**
+Only the disks you actually open, like any file manager. Tools that read every disk (Duplicates, Empty folders) say so before they start, and run at low priority.
 
-## Settings at a glance
+**What happens to deleted files?**
+They go into `.uncommander-trash` at the top of their share or disk, and stay there for the number of days you set (7 by default). You can restore them any time until then.
 
-- **General:** menu name and entry, own tab, tab row, button bar, *mark what changed lately*, folder tree, video and music player, auto-refresh, touch behaviour.
-- **Shortcuts:** buttons under the top bar for your favourite folders.
-- **Look & sound:** colour themes, text size, your own CSS (with live preview, examples and a full variable reference), highlighting, sounds.
-- **Safety & trash:** Practice mode, trash on/off, days to keep deleted items and History, where History is kept.
-- **Tools:** all the tools above, plus the Radarr, Sonarr and Lidarr connections.
-- **Keyboard:** F-key layout, typing jumps or filters, right-click menu or ticks, and the full key list.
+**Is my Radarr / Sonarr / Lidarr API key safe?**
+It's kept on the server and never sent to the browser.
 
-Settings that suit one device (button bar, F-keys, typing, right-click, text size) are kept in that browser. The rest is saved on the server, so it's the same everywhere.
+**Something's wrong. Where do I report it?**
+In the [support thread](https://forums.unraid.net/topic/200949-plugin-uncommander-%E2%AD%90-a-powerful-two-pane-file-manager/) on the unRAID forums. Screenshots help a lot.
 
-## Safety
-
-- Only `/mnt` and `/boot` are reachable unless you turn on the Whole OS view yourself.
-- uC refuses to copy or move something onto itself through another view (for example `/mnt/cache/Media/x` onto `/mnt/user/Media`), and won't move a folder into itself.
-- Existing files are **skipped** by default. You choose per operation, and anything replaced is set aside in the trash first.
-- Jobs run one at a time, in order, and survive a closed tab.
+---
 
 ## Building from source
 
@@ -152,7 +379,7 @@ UC_PLUGIN_URL=https://raw.githubusercontent.com/hernandito/uC-Beta/main/uncomman
 python3 build.py
 ```
 
-This writes `uncommander.plg`, one self-contained file with everything inlined. `CHANGES.txt` becomes the change list shown in unRAID's Plugins page.
+This writes `uncommander.plg`, one self-contained file with everything inlined. `CHANGES.txt` becomes the change list shown on unRAID's Plugins page.
 
 ---
 
