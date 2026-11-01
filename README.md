@@ -3,9 +3,10 @@
 </p>
 
 
+<div align="center">
+### The two-pane file manager unRAID always deserved
+</div>
 <p align="center">
-### Compare
-  <b>The two-pane file manager unRAID always deserved</b><br>
   Fast, safe, and built for real media libraries
 </p>
 
