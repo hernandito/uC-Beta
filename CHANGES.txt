@@ -1,0 +1,9 @@
+Beta - everything since 2026.10.18h (full list in the README on GitHub):
+- Undo History: every change recorded, undo any step or part of one
+- Right-click menu, Copy/Cut/Paste, drag and drop, upload and download, the cart, Tag for delete, folder tree
+- F-key layouts (Windows / Midnight Commander or your own), filter as you type, right-click ticks, hide the button bar, mark recent changes
+- Colour themes, Gallery view, picture editor, HEIC, video player with subtitles and GPU conversion
+- Music library, tag editor (MusicBrainz), bottom player, playlist builder with Send to Plex/Kodi/Jellyfin/Navidrome/USB, Music check, Lidarr
+- Built-in terminal with paste box, kept scrollback and auto-reconnect
+- Tools: Duplicates, What's using space, Clean up, Fix access, User Scripts button, Unassigned Devices mount/unmount
+- Tabs and windows, own tab, iPad Home Screen app, Practice mode for new installs, fewer flash drive writes
