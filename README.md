@@ -4,8 +4,8 @@
 
 
 <p align="center">
-  <b>The two-pane file manager unRAID always deserved</b><br>
-  >Fast, safe, and built for real media libraries
+  <h3>The two-pane file manager unRAID always deserved</h3><br>
+  Fast, safe, and built for real media libraries
 </p>
 
 <p align="center">
