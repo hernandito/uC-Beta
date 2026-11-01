@@ -1,7 +1,7 @@
 <?xml version='1.0' standalone='yes'?>
 <!DOCTYPE PLUGIN [
 <!ENTITY name    "uncommander">
-<!ENTITY version "2026.11.01-r132">
+<!ENTITY version "2026.11.01-r133">
 <!ENTITY plugdir "/usr/local/emhttp/plugins/uncommander">
 <!ENTITY cfgdir  "/boot/config/plugins/uncommander">
 ]>
@@ -28,6 +28,12 @@ mkdir -p &plugdir; &cfgdir;
 </INLINE>
 </FILE>
 
+<FILE Name="/usr/local/emhttp/plugins/uncommander/README.md" Mode="0644">
+<INLINE><![CDATA[**unCommander** (Beta)
+
+A two-pane, Midnight Commander-style file manager for unRAID. Browse two folders side by side and copy, move, rename, delete, compress, extract and compare files with the mouse, F-keys or taps on an iPad - with background jobs, Undo for every change, a restorable trash, batch rename, a viewer and editor, a picture editor, video and music players, playlists, a built-in terminal, and tools for duplicates, disk usage, empty folders, movie folders that lost their video (Radarr), TV shows with missing episodes (Sonarr) and music checks (Lidarr).
+]]></INLINE>
+</FILE>
 <FILE Name="/usr/local/emhttp/plugins/uncommander/UnCommander.page" Mode="0644">
 <INLINE><![CDATA[Menu="Tasks:95"
 Type="xmenu"

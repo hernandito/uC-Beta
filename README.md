@@ -2,11 +2,7 @@
   <a href="https://raw.githubusercontent.com/hernandito/uC-Beta/main/assets/logo.png"><img src="https://raw.githubusercontent.com/hernandito/uC-Beta/main/assets/logo.png" alt="unCommander - two-pane file manager for unRAID" width="600"></a>
 </p>
 
-
-<p align="center">
-  <b>The two-pane file manager unRAID always deserved</b><br>
-  Fast, safe, and built for real media libraries
-</p>
+<h3 align="center">The two-pane file manager unRAID always deserved: fast, safe, and built for real media libraries.</h3>
 
 <p align="center">
   <a href="https://www.buymeacoffee.com/hernandito" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" width="122" height="34"></a>
@@ -17,8 +13,6 @@ unCommander (uC for short) is a plugin that adds a full **Midnight Commander–s
 It works with a **mouse**, a **keyboard** and an **iPad**. Folders with tens of thousands of files open **instantly**. **Every change can be undone**, and nothing is ever deleted without a way back.
 
 [![unCommander inside unRAID](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/main-view.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/main-view.png)
-
-Developed with assistance from Claude AI.
 
 > **This is the beta channel.** It gets every new feature first. The stable version is in Community Applications.
 
@@ -399,7 +393,7 @@ In the [support thread](https://forums.unraid.net/topic/200949-plugin-uncommande
 The source lives in `src/`, laid out like the paths on the server. Run:
 
 ```
-UC_VERSION=2026.11.01-r132 \
+UC_VERSION=2026.11.01-r133 \
 UC_PLUGIN_URL=https://raw.githubusercontent.com/hernandito/uC-Beta/main/uncommander.plg \
 python3 build.py
 ```
