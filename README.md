@@ -1,6 +1,12 @@
-# unCommander
+<p align="center">
+  <a href="https://raw.githubusercontent.com/hernandito/uC-Beta/main/assets/logo.png"><img src="https://raw.githubusercontent.com/hernandito/uC-Beta/main/assets/logo.png" alt="unCommander - two-pane file manager for unRAID" width="600"></a>
+</p>
 
-### The two-pane file manager unRAID always deserved: fast, safe, and built for real media libraries.
+<h3 align="center">The two-pane file manager unRAID always deserved: fast, safe, and built for real media libraries.</h3>
+
+<p align="center">
+  <a href="https://www.buymeacoffee.com/hernandito" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" width="122" height="34"></a>
+</p>
 
 unCommander (uC for short) is a plugin that adds a full **Midnight Commander–style, two-pane file manager** to the unRAID webGUI. There's nothing to SSH into and no Docker container to set up. Open it from the top menu and start working with your shares, disks and pools.
 
@@ -16,6 +22,7 @@ It works with a **mouse**, a **keyboard** and an **iPad**. Folders with tens of 
 
 - [Why unCommander](#why-uncommander)
 - [Install](#install)
+- [Three ways to use it](#three-ways-to-use-it)
 - [The basics](#the-basics)
 - [Copying, moving and jobs](#copying-moving-and-jobs)
 - [Undo, History and the trash](#undo-history-and-the-trash)
@@ -63,6 +70,18 @@ New betas show up in **Plugins → Check for Updates** like any other plugin.
 **Already using the stable version?** The beta installs over it, because it's the same plugin with a newer version. Your settings, shortcuts, colours, trash and History are all kept. To go back, remove the plugin in **Plugins** and install unCommander from Community Applications again.
 
 **Removing it:** **Plugins → unCommander → Remove**. Your settings and any `.uncommander-trash` folders are left in place.
+
+---
+
+## Three ways to use it
+
+[![uC inside unRAID, in its own tab, and as an app window](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/views.png)](https://raw.githubusercontent.com/hernandito/uC-Beta/main/screenshots/views.png)
+
+- **Inside unRAID:** open it from the top menu bar, with unRAID's header and menus around it.
+- **In its own tab:** the whole browser window for your files, with its own icon in the tab. Settings → General has the button.
+- **As an app:** a minimal application window with no browser bars, or on the iPad, *Share → Add to Home Screen* for an app icon. It looks and feels like a desktop file manager.
+
+Each tab or window keeps its own panes, so you can have several open at once.
 
 ---
 
@@ -374,7 +393,7 @@ In the [support thread](https://forums.unraid.net/topic/200949-plugin-uncommande
 The source lives in `src/`, laid out like the paths on the server. Run:
 
 ```
-UC_VERSION=2026.11.01-r130 \
+UC_VERSION=2026.11.01-r132 \
 UC_PLUGIN_URL=https://raw.githubusercontent.com/hernandito/uC-Beta/main/uncommander.plg \
 python3 build.py
 ```
@@ -382,5 +401,13 @@ python3 build.py
 This writes `uncommander.plg`, one self-contained file with everything inlined. `CHANGES.txt` becomes the change list shown on unRAID's Plugins page.
 
 ---
+
+## License
+
+MIT. See [LICENSE](LICENSE). Developed with assistance from Claude AI.
+
+---
+
+<p align="center"><a href="https://raw.githubusercontent.com/hernandito/uC-Beta/main/assets/icon.png"><img src="https://raw.githubusercontent.com/hernandito/uC-Beta/main/assets/icon.png" alt="unCommander icon" width="96"></a></p>
 
 Made by **hernandito**. If unCommander saves you time, a ⭐ on the repo and a note in the forum thread are always appreciated.

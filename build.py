@@ -26,7 +26,7 @@ plg = f"""<?xml version='1.0' standalone='yes'?>
 <!ENTITY plugdir "{PLUGDIR}">
 <!ENTITY cfgdir  "/boot/config/plugins/uncommander">
 ]>
-<PLUGIN name="&name;" author="hernandito" version="&version;"{(' pluginURL="' + PLUGIN_URL + '"') if PLUGIN_URL else ''} min="6.12.0" icon="folder-open" launch="UnCommander" support="https://forums.unraid.net/topic/200949-plugin-uncommander-%E2%AD%90-a-powerful-two-pane-file-manager/">
+<PLUGIN name="&name;" author="hernandito" version="&version;"{(' pluginURL="' + PLUGIN_URL + '"') if PLUGIN_URL else ''} min="6.12.0" icon="uncommander.png" launch="UnCommander" support="https://forums.unraid.net/topic/200949-plugin-uncommander-%E2%AD%90-a-powerful-two-pane-file-manager/">
 
 <CHANGES>
 ###&version;

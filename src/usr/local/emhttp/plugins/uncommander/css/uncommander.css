@@ -3156,3 +3156,17 @@ html.uc-noselect input, html.uc-noselect textarea, html.uc-noselect #uc .uc-dlg 
 #uc .uc-jmode:hover { background: color-mix(in srgb, var(--ink) 12%, transparent) !important; color: var(--ink); }
 #uc .uc-jmode.on { color: var(--accent); }
 #uc .uc-jmode.on svg { fill: color-mix(in srgb, var(--accent) 25%, transparent); }
+#uc .st-about {
+  font-size: calc(13px * var(--fs, 1));
+  line-height: 1.55;
+  margin-top: -5px;
+}
+
+#uc .st-logo {
+  display: block;
+  width: min(360px, 100%);
+  height: auto;
+  margin: none;
+  margin-top: -16x;
+  margin-left: -16px;
+}
