@@ -2,8 +2,12 @@
   <a href="https://raw.githubusercontent.com/hernandito/uC-Beta/main/assets/logo.png"><img src="https://raw.githubusercontent.com/hernandito/uC-Beta/main/assets/logo.png" alt="unCommander - two-pane file manager for unRAID" width="600"></a>
 </p>
 
-<h3 align="center">The two-pane file manager unRAID always deserved</h3>
-<h4  align="center">Fast, safe, and built for real media libraries.</h4>
+
+<p align="center">
+  <b>The two-pane file manager unRAID always deserved</b><br>
+  >Fast, safe, and built for real media libraries
+</p>
+
 <p align="center">
   <a href="https://www.buymeacoffee.com/hernandito" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" width="122" height="34"></a>
 </p>
